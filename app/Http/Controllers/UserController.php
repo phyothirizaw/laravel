@@ -26,4 +26,34 @@ class UserController extends Controller
         // dd($bio, $user_id);
         echo $bio, $user_id;
     }
+    public function postList(){
+        //  $user = User::with('posts')->find(3);
+        //  $posts = $user->posts;
+        //  dd($posts);
+
+        //  $user_posts  = User::find(4)->posts;
+        //  dd($user_posts);
+
+        $user_posts  = User::find(5)->posts;
+        foreach($user_posts as $user_post) {
+            //echo $user_post->title  "<br>";
+            $user_post_title[] = $user_post->title;
+        }
+        dd($user_post_title);
+        
+    }
+
+    public function showLatestComment($userId)
+    {
+        // Using find()
+        $user = User::find($userId);
+
+        // Access single comment through hasOneThrough
+        $latestComment = $user->latestCommentThroughPost;
+
+        // Show result
+        dd($latestComment->comment);
+    }
+
+   
 }

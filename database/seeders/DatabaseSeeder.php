@@ -24,12 +24,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         //User::factory(10)->create();
+         User::factory(10)->create();
          
-         //Post::factory(10)->create();
-        // PostUserLike::factory(10)->create();
+         Post::factory(10)->create();
+         PostUserLike::factory(10)->create();
          Profile::factory(10)->create();
-         //Comment::factory(10)->create();
+         Comment::factory(10)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',

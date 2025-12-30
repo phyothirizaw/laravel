@@ -4,9 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 use App\Models\Article;
 use App\Models\User;
 use App\Models\Profile;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,3 +33,13 @@ Route::get('/articles/more', function() {
 Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/profile', [ProfileController::class, 'index']);
+
+Route::get('/post-list',[UserController::class,'postList']);
+
+Route::get('/post-user', [PostController::class, 'postedUser']);
+
+Route::get('/user/likes', [LikeController::class, 'showLikedPosts']);
+
+Route::get('/post/likers', [LikeController::class, 'showPostLikers']);
+
+Route::get('/user/{id}/latest-comment', [UserController::class, 'showLatestComment']);
