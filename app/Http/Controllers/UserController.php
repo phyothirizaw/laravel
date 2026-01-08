@@ -55,5 +55,19 @@ class UserController extends Controller
         dd($latestComment->comment);
     }
 
+    public function showUserComments($id)
+    {
+        // get single user
+        $user = User::find($id);
+
+        // get all comments through posts
+        $comments = $user->commentsThroughPosts;
+
+        foreach ($comments as $comment) {
+             echo $comment->comment . "<br>";
+        }
+    
+    }
+
    
 }
