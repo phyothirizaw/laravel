@@ -2,6 +2,7 @@
 
     use App\Http\Controllers\ProfileController;
     use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\ArticleController;
 
     Route::get('/', function () {
         return view('welcome');
@@ -15,6 +16,10 @@
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+       Route::get('/articles',[ArticleController::class,'index']);
+       Route::get('/articles/create', [ArticleController::class, 'create']);
+       Route::post('/articles/store', [ArticleController::class, 'store']);
     });
 
 
@@ -27,5 +32,7 @@
       Route::get('/admin', function () {
          return 'Admin Page - Only admin can access';
       })->middleware('check.name');
+
+    
 
 
