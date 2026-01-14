@@ -9,13 +9,33 @@
 
             <form action="/articles/store" method="POST" class="space-y-5">
                 @csrf
+                <!-- @if ($errors->any())
+                    <div class="bg-red-50 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        <ul class="list-disc pl-5">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif -->
+
+                @if(session('success'))
+                    <div class="bg-green-50 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                        {{ session('success') }}
+                    </div>
+            @endif
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Title
                     </label>
-                    <input type="text" name="title" class="w-full rounded-md border-gray-300 px-4 py-2
+                    <input type="text" name="title" value="{{ old('title') }}" class="w-full rounded-md border-gray-300 px-4 py-2
                                focus:border-blue-500 focus:ring-blue-500">
+
+                    @error('title')  <!-- name of input -->
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
+               
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -23,16 +43,24 @@
                     </label>
                     <textarea name="body" rows="4"
                         class="w-full rounded-md border-gray-300 px-4 py-2
-                               focus:border-blue-500 focus:ring-blue-500"></textarea>
+                               focus:border-blue-500 focus:ring-blue-500">{{ old('body') }}</textarea>
+                    @error('body')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Category ID
                     </label>
-                    <input type="number" name="category_id" 
+                    <input type="number" name="category_id" value="{{ old('category_id') }}"
                         class="w-full rounded-md border-gray-300 px-4 py-2
                                focus:border-blue-500 focus:ring-blue-500">
+                    @error('category_id')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+
                 </div>
 
                 <!-- Button -->

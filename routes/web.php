@@ -20,6 +20,11 @@
        Route::get('/articles',[ArticleController::class,'index']);
        Route::get('/articles/create', [ArticleController::class, 'create']);
        Route::post('/articles/store', [ArticleController::class, 'store']);
+      
+       Route::get('/articles/edit/{id}', [ArticleController::class, 'edit']);
+       Route::put('/articles/update/{id}', [ArticleController::class, 'update']);
+       Route::delete('/articles/delete/{id}', [ArticleController::class, 'destroy']);
+       //Route:get so yin route ko call lite yin delete pyit dl
     });
 
 
@@ -33,6 +38,7 @@
          return 'Admin Page - Only admin can access';
       })->middleware('check.name');
 
+     
     
 
 
